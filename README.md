@@ -1,12 +1,69 @@
-# React + Vite
+# E-commerce Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based e-commerce application built with Vite and TailwindCSS.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (version 16 or higher)
+- npm (Node Package Manager)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Go to your fav folder (desktop preferred) and then clone the repository
+
+```bash
+git clone https://github.com/R3yz0n/ecommerce-project.git
+cd ecommerce
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Start the development server
+
+```bash
+npm run dev
+```
+
+This will start the development server at `http://localhost:5173`
+
+## Available Scripts
+
+- `npm run dev` - Starts the development server
+- `npm run build` - Builds the app for production
+- `npm run preview` - Preview the production build locally
+- `npm run lint` - Run ESLint to check code quality
+
+## Tech Stack
+
+- [React](https://react.dev/) - Frontend library
+- [Vite](https://vitejs.dev/) - Build tool and development server
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [ESLint](https://eslint.org/) - Code linting
+
+## Project Structure
+
+```
+ecommerce/
+├── src/            # Source files
+│   ├── assets/     # Static assets
+│   ├── App.jsx     # Main App component
+│   └── main.jsx    # Entry point
+├── public/         # Public static files
+└── index.html      # HTML template
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
