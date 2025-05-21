@@ -7,7 +7,7 @@ const App = () => {
   // Javascript code goes here
 
   return (
-    <div className="text-4xl">
+    <div className="text-4xl ">
       <Header />
 
       <Body />
