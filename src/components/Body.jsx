@@ -11,29 +11,25 @@ const Body = () => {
     let filteredProductsByRating = filteredItems.filter((product) => {
       return product.rating.rate > 3; // only true values get stored in an array
     });
-    setProducts(filteredProductsByRating);
+    setFilteredItems(filteredProductsByRating);
   };
   return (
     <section className="flex flex-col gap-4 px-2 py-2 mb-10  text-lg">
-      <div className="flex gap-3">
-        <input
-          type="text"
-          className="px-4 py-2 pr-10 text-sm text-gray-700 bg-white border border-gray-800 rounded-lg shadow-sm w-80 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          placeholder="Search..."
-        />
-        Search
-      </div>
-      <button
-        onClick={handleTopRatedProducts}
-        className="px-4 py-2 font-semibold text-white transition-colors duration-200 bg-blue-600 rounded-lg shadow-md w-60 hover:bg-blue-700 hover:shadow-lg"
-      >
-        Top Rated Products
-      </button>
-      <Category />
-      <div className="flex flex-wrap justify-center gap-4 product-items">
-        <h2 className="w-full text-xl font-semibold text-gray-800 text-center mb-4">
-          Total Items : {filteredItems.length}
-        </h2>
+      <aside className="flex items-center justify-between gap-4 p-4 md:px-6 lg:px-8  rounded-lg">
+        <SearchBar />
+
+        <button
+          onClick={handleTopRatedProducts}
+          className="px-6 text-[17px] cursor-pointer py-1.5 font-semibold text-white transition-colors duration-200 bg-blue-600 rounded-lg shadow-md  hover:bg-blue-700 hover:shadow-lg"
+        >
+          Top Rated Products
+        </button>
+        <Category />
+      </aside>
+      <h2 className="w-full text-xl font-semibold text-gray-800 text-center mb-4">
+        Total Items : {filteredItems.length}
+      </h2>
+      <div className=" mx-auto w-full lg:px-6 md:px-4  grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 justify-center gap-4 product-items ">
         {filteredItems.map((product) => {
           return <ProductCard productItem={product} key={product.id} />;
           // THis was the previous code
@@ -51,3 +47,49 @@ const Body = () => {
 };
 
 export default Body;
+
+// for this component i used the flowbite
+const SearchBar = () => {
+  return (
+    <form class="max-w-lg  w-2/4 mx-auto ml-0">
+      <label
+        for="default-search"
+        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+      >
+        Search
+      </label>
+      <div class="relative">
+        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+          <svg
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+        <input
+          type="search"
+          id="default-search"
+          class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search Mockups, Logos..."
+          required
+        />
+        <button
+          type="submit"
+          class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Search
+        </button>
+      </div>
+    </form>
+  );
+};
