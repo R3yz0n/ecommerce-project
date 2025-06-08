@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 
 const App = () => {
   // Javascript code goes here
-  // console.fuck("hello");
 
   return (
     <div className="text-4xl ">
