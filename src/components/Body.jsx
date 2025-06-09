@@ -5,7 +5,7 @@ import { ProductItems } from "../utils/mockData";
 import axios from "axios";
 //
 const Body = () => {
-  const [filteredItems, setFilteredItems] = useState(ProductItems); // the first argument is the state variable, the second argument is the function to update the state variable
+  const [filteredItems, setFilteredItems] = useState([]); // the first argument is the state variable, the second argument is the function to update the state variable
 
   const handleTopRatedProducts = () => {
     let filteredProductsByRating = filteredItems.filter((product) => {
@@ -25,8 +25,7 @@ const Body = () => {
   return (
     <section className="flex flex-col gap-4 px-2 py-2 mb-10  text-lg">
       <aside className="flex items-center justify-between gap-4 p-4 md:px-6 lg:px-8  rounded-lg">
-        <SearchBar />
-
+        <SearchBar items={filteredItems} setItems={setFilteredItems} />
         <button
           onClick={handleTopRatedProducts}
           className="px-6 text-[17px] cursor-pointer py-1.5 font-semibold text-white transition-colors duration-200 bg-blue-600 rounded-lg shadow-md  hover:bg-blue-700 hover:shadow-lg"
@@ -58,7 +57,23 @@ const Body = () => {
 export default Body;
 
 // for this component i used the flowbite
-const SearchBar = () => {
+const SearchBar = ({ items, setItems }) => {
+  const [searchKey, setSearchKey] = useState("");
+
+  const handleChange = (e) => {
+    // console.log();
+    setSearchKey(e.target.value);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault(); // Prevent the form from submitting and refreshing the page
+    const filteredItems = items.filter((item) =>
+      item.title.toLowerCase().includes(searchKey.toLowerCase())
+    );
+
+    setItems(filteredItems);
+  };
+
   return (
     <form className="max-w-lg  w-2/4 mx-auto ml-0">
       <label
@@ -86,6 +101,7 @@ const SearchBar = () => {
           </svg>
         </div>
         <input
+          onChange={handleChange}
           type="search"
           id="default-search"
           className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -93,6 +109,7 @@ const SearchBar = () => {
           required
         />
         <button
+          onClick={handleClick}
           type="submit"
           className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
