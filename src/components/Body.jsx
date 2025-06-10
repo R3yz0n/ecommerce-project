@@ -3,10 +3,12 @@ import ProductCard from "./ProductCard";
 import Category from "./Category";
 import { ProductItems } from "../utils/mockData";
 import axios from "axios";
+import ProductCardSkeleton from "./ProductSkeletonCard";
 //
 const Body = () => {
   const [allItems, setAllItems] = useState([]); // Store all products
   const [filteredItems, setFilteredItems] = useState([]); // Store filtered products
+  const [loading, setLoading] = useState(false);
 
   const handleTopRatedProducts = () => {
     let filteredProductsByRating = allItems.filter((product) => {
@@ -17,7 +19,9 @@ const Body = () => {
 
   useEffect(() => {
     async function fetchProducts() {
-      const response = await axios.get("https://fakestoreapi.com/products");
+      setLoading(true); // here loading gets true
+      const response = await axios.get("https://fakestoreapi.com/products"); // 10section
+      setLoading(false);
       setAllItems(response.data);
       setFilteredItems(response.data);
     }
@@ -40,9 +44,9 @@ const Body = () => {
         Total Items : {filteredItems.length}
       </h2>
       <div className=" mx-auto w-full lg:px-6 md:px-4  grid md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 justify-center gap-4 product-items ">
-        {filteredItems.map((product) => {
-          return <ProductCard productItem={product} key={product.id} />;
-        })}
+        {loading
+          ? Array.from({ length: 10 }).map((_, index) => <ProductCardSkeleton key={index} />)
+          : filteredItems.map((product) => <ProductCard productItem={product} key={product.id} />)}
       </div>
     </section>
   );
