@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ productItem }) => {
+  const navigate = useNavigate();
   return (
     <div className="flex mx-auto flex-col gap-4 px-4 py-4 transition-shadow duration-300 bg-white border rounded-lg shadow-md border-slate-200 w-72 max-w-full hover:shadow-xl">
       <img
+        onClick={() => navigate(`/product/${productItem.id}`)}
         src={productItem.image}
         alt={productItem.title}
         className="object-cover cursor-pointer transition-transform duration-300 rounded-md h-80 hover:scale-105"
